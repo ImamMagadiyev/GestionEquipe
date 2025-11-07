@@ -1,5 +1,5 @@
 <?php
-require 'db/pdo.php'; // adapte le chemin si nécessaire
+require 'bd/pdo.php'; // adapte le chemin si nécessaire
 
 try {
     // Requête simple pour tester la connexion
