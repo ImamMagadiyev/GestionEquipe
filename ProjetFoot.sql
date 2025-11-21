@@ -1,9 +1,9 @@
--- Exemple rapide pour Joueurs
-CREATE TABLE Joueurs (
+-- Table Joueur
+CREATE TABLE Joueur (
     id_joueur VARCHAR(50) PRIMARY KEY,
-    nom VARCHAR(50),
-    prenom VARCHAR(50),
-    num_license VARCHAR(50),
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    num_license VARCHAR(50) NOT NULL,
     date_naissance DATE,
     taille VARCHAR(50),
     poids DECIMAL(15,2),
@@ -11,10 +11,10 @@ CREATE TABLE Joueurs (
     poste_prefere VARCHAR(50)
 );
 
--- Table Matchs
-CREATE TABLE Matchs (
+-- Table Match_
+CREATE TABLE Match_ (
     id_match VARCHAR(50) PRIMARY KEY,
-    date_ DATE,
+    date_ DATE NOT NULL,
     heure TIME,
     adversaire VARCHAR(50),
     lieu VARCHAR(50),
@@ -24,10 +24,10 @@ CREATE TABLE Matchs (
 -- Table Commentaire
 CREATE TABLE Commentaire (
     id_commentaire VARCHAR(50) PRIMARY KEY,
-    commentaire VARCHAR(50),
-    date_ VARCHAR(50),
+    commentaire VARCHAR(255),
+    date_ DATE,
     id_joueur VARCHAR(50),
-    FOREIGN KEY (id_joueur) REFERENCES Joueurs(id_joueur)
+    FOREIGN KEY (id_joueur) REFERENCES Joueur(id_joueur)
 );
 
 -- Table Participer
@@ -37,7 +37,7 @@ CREATE TABLE Participer (
     id_match VARCHAR(50),
     poste VARCHAR(50),
     evaluation VARCHAR(50),
-    statut_joueur VARCHAR(50),
-    FOREIGN KEY (id_joueur) REFERENCES Joueurs(id_joueur),
-    FOREIGN KEY (id_match) REFERENCES Matchs(id_match)
+    titulaire_remplacant VARCHAR(50),
+    FOREIGN KEY (id_joueur) REFERENCES Joueur(id_joueur),
+    FOREIGN KEY (id_match) REFERENCES Match_(id_match)
 );
