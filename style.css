@@ -13,7 +13,6 @@ body {
 }
 
 /* ===== NAVBAR ===== */
-
 .navbar {
     display: flex;
     align-items: center;
@@ -43,6 +42,7 @@ body {
 
 .navbar-menu li {
     margin: 0 10px;
+    position: relative;
 }
 
 .navbar-menu li a {
@@ -56,6 +56,36 @@ body {
     background-color: #111;
 }
 
+/* Sous-menu */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 180px;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+.submenu li a {
+    padding: 10px 15px;
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.submenu li a:hover {
+    background-color: #111;
+}
+
+.navbar-menu li.menu-item:hover .submenu {
+    display: block;
+}
+
 /* BURGER ICON */
 .menu-icon {
     display: none;
@@ -65,7 +95,7 @@ body {
     padding: 10px;
 }
 
-/* CACHE VRAIMENT LE CHECKBOX */
+/* CACHE CHECKBOX */
 #menu-toggle {
     position: absolute;
     opacity: 0;
@@ -74,7 +104,6 @@ body {
 
 /* RESPONSIVE */
 @media screen and (max-width: 768px) {
-
     .navbar-menu {
         flex-direction: column;
         display: none;
@@ -91,7 +120,6 @@ body {
         border-top: 1px solid #444;
     }
 
-    /* OUVERTURE DU MENU */
     #menu-toggle:checked + .menu-icon + .navbar-menu {
         display: flex;
     }
@@ -99,8 +127,33 @@ body {
     .menu-icon {
         display: block;
     }
+
+    .submenu {
+        position: static;
+    }
 }
 
+/* ===== Table header + bouton ===== */
+.table-header {
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-ajouter {
+    background-color: #007BFF;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.btn-ajouter:hover {
+    background-color: #0056b3;
+}
 
 /* ===== Tables ===== */
 table {
@@ -118,16 +171,16 @@ th, td {
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #007BFF;
+    color: white;
     font-weight: bold;
 }
 
-/* Table rows hover */
 tr:hover {
-    background-color: #f1f1f1;
+    background-color: #e6f2ff;
 }
 
-/* ===== Forms ===== */
+/* ===== Formes ===== */
 form {
     background-color: white;
     padding: 20px;
@@ -165,6 +218,32 @@ form button:hover {
     background-color: #555;
 }
 
+/* ===== Action buttons table ===== */
+.action-btn {
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+    text-decoration: none;
+    margin-right: 5px;
+    font-size: 0.9em;
+}
+
+.edit-btn {
+    background-color: #28a745;
+}
+
+.edit-btn:hover {
+    background-color: #1e7e34;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #a71d2a;
+}
+
 /* ===== Titres ===== */
 h1, h2, h3 {
     text-align: center;
@@ -182,4 +261,15 @@ h1, h2, h3 {
     color: green;
     text-align: center;
     margin-bottom: 10px;
+}
+
+/* ===== Liens globaux ===== */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ===== Menu Joueur sous-menu ===== */
+.navbar-menu li.menu-item:hover > a {
+    background-color: #111;
 }
