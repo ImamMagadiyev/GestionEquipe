@@ -25,6 +25,7 @@ require_once __DIR__ . '/../../controleur/Match/GestionListeMatch.php';
                 <th>Adversaire</th>
                 <th>Lieu</th>
                 <th>Résultat</th>
+                <th>Statut</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -36,6 +37,7 @@ require_once __DIR__ . '/../../controleur/Match/GestionListeMatch.php';
                 <td><?= htmlspecialchars($m->getAdversaire()) ?></td>
                 <td><?= htmlspecialchars($m->getLieu()) ?></td>
                 <td><?= htmlspecialchars($m->getResultat()) ?></td>
+                <td><?= htmlspecialchars($m->getStatut()) ?></td>
                 <td>
                     <a href="modifier.php?id=<?= $m->getIdMatch() ?>" class="action-btn edit-btn">Modifier</a>
                     <a href="supprimer.php?id=<?= $m->getIdMatch() ?>" class="action-btn delete-btn" onclick="return confirm('Supprimer ce match ?')">Supprimer</a>

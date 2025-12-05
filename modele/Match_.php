@@ -8,6 +8,7 @@ class Match_ {
     private ?string $adversaire;
     private ?string $lieu;
     private ?string $resultat;
+    private ?string $statut;
 
     public function __construct(string $id_match,string $date_,?string $heure = null,?string $adversaire = null,?string $lieu = null,?string $resultat = null){
         $this->id_match = $id_match;
@@ -36,6 +37,17 @@ class Match_ {
     public function getResultat(): ?string { 
         return $this->resultat; 
     }
+    public function getStatut(): string {
+        $maintenant = new DateTime();
+        $dateMatch = new DateTime($this->date_);
+
+        if ($dateMatch > $maintenant) {
+            return 'à venir';
+        }
+
+        return 'Terminé';
+    }
+
 
     public function setDate(?string $date): void { 
         $this->date = $date; 

@@ -273,3 +273,22 @@ a {
 .navbar-menu li.menu-item:hover > a {
     background-color: #111;
 }
+/* ===== Select dans tableau ===== */
+table td select {
+    width: 100%;
+    max-width: none;   /* ne pas restreindre la largeur */
+    min-width: 120px;  /* optionnel : pour voir toutes les options */
+    height: auto;      /* laisse le navigateur gérer */
+    position: relative;
+    z-index: 1000;
+}
+
+/* Ajustement si overflow sur table ou tr */
+table {
+    overflow: visible;
+}
+
+table tr, table td {
+    display: table-row; /* assure que les selects s'affichent correctement */
+}
+

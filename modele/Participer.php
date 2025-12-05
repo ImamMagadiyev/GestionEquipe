@@ -1,10 +1,12 @@
 <?php
+
 class Participer {
+
     private string $id_participant;
     private string $id_joueur;
     private string $id_match;
     private ?string $poste;
-    private ?string $evaluation;
+    private ?int $evaluation; 
     private ?string $titulaire_remplacant;
 
     public function __construct(
@@ -12,9 +14,9 @@ class Participer {
         string $id_joueur,
         string $id_match,
         ?string $poste = null,
-        ?string $evaluation = null,
+        ?int $evaluation = null,
         ?string $titulaire_remplacant = null
-    ) {
+    ){
         $this->id_participant = $id_participant;
         $this->id_joueur = $id_joueur;
         $this->id_match = $id_match;
@@ -35,7 +37,7 @@ class Participer {
     public function getPoste(): ?string { 
         return $this->poste; 
     }
-    public function getEvaluation(): ?string { 
+    public function getEvaluation(): ?int { 
         return $this->evaluation; 
     }
     public function getTitulaireRemplacant(): ?string { 
@@ -43,28 +45,11 @@ class Participer {
     }
 
     public function setPoste(?string $poste): void { 
-    $this->poste = $poste; 
+        $this->poste = $poste; 
+    }
+    public function setEvaluation(?int $evaluation): void {
+        $this->evaluation = $evaluation; }
+    public function setTitulaireRemplacant(?string $val): void { 
+        $this->titulaire_remplacant = $val; 
+    }
 }
-
-public function setEvaluation(?string $evaluation): void { 
-    $this->evaluation = $evaluation; 
-}
-
-public function setTitulaireRemplacant(?string $tr): void { 
-    $this->titulaire_remplacant = $tr; 
-}
-
-public function setIdParticipant(string $id): void {
-    $this->id_participant = $id;
-}
-
-public function setIdJoueur(string $id_joueur): void {
-    $this->id_joueur = $id_joueur;
-}
-
-public function setIdMatch(string $id_match): void {
-    $this->id_match = $id_match;
-}
-
-}
-?>
