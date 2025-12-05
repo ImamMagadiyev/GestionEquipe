@@ -273,3 +273,98 @@ a {
 .navbar-menu li.menu-item:hover > a {
     background-color: #111;
 }
+
+
+
+/* ====== Page Connexion ====== */
+#login-page {
+    font-family: Arial, sans-serif;
+    background-color: #e3e3e3;
+    color: #333;
+    display: flex;
+    justify-content: center;  
+    align-items: center;      
+    height: 98vh;            
+    padding: 0;
+    flex-direction: column;
+}
+
+#login-page .logo {
+    width: 150px;             
+    height: auto;             
+    margin-bottom: 20px;     
+}
+
+#login-page .container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;         
+    text-align: center;
+}
+
+#login-page h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+#login-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;               
+}
+
+#login-page .form-group {
+    width: 100%;
+    text-align: left;
+}
+
+#login-page label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+#login-page input[type="text"],
+#login-page input[type="password"] {
+    width: 100%;
+    padding: 14px;           
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: #333;
+}
+
+#login-page input[type="submit"] {
+    padding: 14px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;         
+    transition: background-color 0.3s;
+    width: 100%;              
+}
+
+#login-page input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* ===== Error Message Styles ===== */
+#login-page .error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* ===== Link Styles ===== */
+#login-page a {
+    text-decoration: none;
+    color: inherit;
+}
