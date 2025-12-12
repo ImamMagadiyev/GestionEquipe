@@ -155,30 +155,39 @@ body {
     background-color: #0056b3;
 }
 
-/* ===== Tables ===== */
-table {
+/* ===== TABLEAUX DÉDIÉS ===== */
+
+table.table-match-2 {
     border-collapse: collapse;
     width: 90%;
     margin: 20px auto;
-    background-color: white;
+    background-color: #fff;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
 }
 
-th, td {
-    border: 1px solid #ddd;
+table.table-match-2 th, table.table-match-2 td {
+    border: 1px solid #ccc;
     padding: 8px;
     text-align: left;
 }
 
-th {
-    background-color: #007BFF;
+table.table-match-2 th {
+    background-color: #28a745;
     color: white;
-    font-weight: bold;
 }
 
-tr:hover {
+table.table-match-2 tr:hover {
     background-color: #e6f2ff;
 }
+
+table.table-match-2 td ul {
+    margin: 0;
+    padding-left: 15px;
+    list-style: disc;
+}
+
+
 
 /* ===== Formes ===== */
 form {
@@ -273,26 +282,14 @@ a {
 .navbar-menu li.menu-item:hover > a {
     background-color: #111;
 }
-/* ===== Select dans tableau ===== */
-table td select {
-    width: 100%;
-    max-width: none;   /* ne pas restreindre la largeur */
-    min-width: 120px;  /* optionnel : pour voir toutes les options */
-    height: auto;      /* laisse le navigateur gérer */
-    position: relative;
-    z-index: 1000;
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-/* Ajustement si overflow sur table ou tr */
-table {
-    overflow: visible;
-}
-
-table tr, table td {
-    display: table-row; /* assure que les selects s'affichent correctement */
-}
-
-/* ====== Page Connexion ====== */
+/* ===== Page login ===== */
 #login-page {
     font-family: Arial, sans-serif;
     background-color: #e3e3e3;
@@ -300,15 +297,8 @@ table tr, table td {
     display: flex;
     justify-content: center;  
     align-items: center;      
-    height: 98vh;            
-    padding: 0;
+    height: 100%;
     flex-direction: column;
-}
-
-#login-page .logo {
-    width: 150px;             
-    height: auto;             
-    margin-bottom: 20px;     
 }
 
 #login-page .container {
@@ -321,8 +311,13 @@ table tr, table td {
     text-align: center;
 }
 
+#login-page .logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
 #login-page h1 {
-    color: #333;
     font-size: 28px;
     margin-bottom: 20px;
 }
@@ -347,13 +342,11 @@ table tr, table td {
 #login-page input[type="text"],
 #login-page input[type="password"] {
     width: 100%;
-    padding: 14px;           
-    margin-bottom: 15px;
+    padding: 14px;
     border: 1px solid #ddd;
     border-radius: 6px;
     background-color: #f9f9f9;
     font-size: 16px;
-    color: #333;
 }
 
 #login-page input[type="submit"] {
@@ -363,25 +356,17 @@ table tr, table td {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 18px;         
+    font-size: 18px;
+    width: 100%;
     transition: background-color 0.3s;
-    width: 100%;              
 }
 
 #login-page input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-/* ===== Error Message Styles ===== */
 #login-page .error {
     color: #dc3545;
     font-size: 14px;
     margin-bottom: 10px;
 }
-
-/* ===== Link Styles ===== */
-#login-page a {
-    text-decoration: none;
-    color: inherit;
-}
-

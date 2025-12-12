@@ -7,7 +7,7 @@ require_once __DIR__ . '/../../controleur/Joueur/GestionListeJoueur.php';
 <head>
     <meta charset="UTF-8">
     <title>Liste des joueurs</title>
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style.css"> 
 </head>
 <body>
 
@@ -17,7 +17,7 @@ require_once __DIR__ . '/../../controleur/Joueur/GestionListeJoueur.php';
         <a href="ajout.php" class="btn-ajouter">Ajouter un joueur</a>
     </div>
 
-    <table>
+    <table class="table-match-2">
         <thead>
             <tr>
                 <th>Nom</th>

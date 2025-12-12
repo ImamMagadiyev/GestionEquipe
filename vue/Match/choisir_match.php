@@ -22,7 +22,7 @@ $matches = $daoMatch->findAll();
         <?php if(empty($matches)): ?>
             <p class="error">Aucun match disponible.</p>
         <?php else: ?>
-            <table>
+            <table class="table-match-2">
                 <thead>
                     <tr>
                         <th>Adversaire</th>

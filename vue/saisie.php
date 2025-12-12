@@ -24,7 +24,7 @@ require_once __DIR__ . '/../controleur/GestionSaisieMatch.php';
     <h1>Préparer le match contre <?= htmlspecialchars($match->getAdversaire()) ?></h1>
 
     <form method="post">
-        <table>
+        <table class="table-match-2">
             <thead>
                 <tr>
                     <th>Joueur</th>
