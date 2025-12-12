@@ -17,7 +17,7 @@ require_once __DIR__ . '/../../controleur/Match/GestionListeMatch.php';
         <a href="ajout.php" class="btn-ajouter">Ajouter un match</a>
     </div>
 
-    <table>
+    <table class="table-match-2">
         <thead>
             <tr>
                 <th>Date</th>

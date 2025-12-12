@@ -1,4 +1,4 @@
-<?php require 'Connexion/verificationConnexion.php'; ?>
+<?php require 'connexion/verificationConnexion.php'; ?>
 
 <nav class="navbar">
 
@@ -17,7 +17,7 @@
         <li><a href="/GestionEquipe/vue/Match/liste.php">Liste des matchs</a></li>
         <li><a href="/GestionEquipe/vue/Match/choisir_match.php">Préparer un match</a></li>
         <li><a href="/GestionEquipe/vue/statistiques.php">Statistiques</a></li>
-        <li><a href="/GestionEquipe/Connexion/deconnexion.php">Déconnexion</a></li>
+        <li><a href="/GestionEquipe/connexion/deconnexion.php">Déconnexion</a></li>
     </ul>
 
 </nav>
