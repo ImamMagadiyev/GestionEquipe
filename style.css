@@ -288,9 +288,7 @@ table {
     overflow: visible;
 }
 
-table tr, table td {
-    display: table-row; /* assure que les selects s'affichent correctement */
-}
+
 
 /* ====== Page Connexion ====== */
 #login-page {
