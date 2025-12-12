@@ -187,6 +187,46 @@ table.table-match-2 td ul {
     list-style: disc;
 }
 
+/* Boîte de message centrée */
+.flash-message {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    text-align: center;
+    z-index: 1000;
+    min-width: 250px;
+}
+
+/* Couleur selon le type */
+.flash-message.success {
+    background-color: #4CAF50; /* vert pour succès */
+    color: white;
+}
+
+.flash-message.error {
+    background-color: #fff; /* blanc */
+    color: #f44336;         /* texte rouge */
+    border: 2px solid #f44336; /* contour rouge pour mieux voir */
+}
+
+/* Croix pour fermer */
+.flash-message .close-btn {
+    color: inherit; /* même couleur que le texte */
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 15px;
+}
+.flash-message .close-btn:hover {
+    color: #555;
+}
+
+
 
 
 /* ===== Formes ===== */

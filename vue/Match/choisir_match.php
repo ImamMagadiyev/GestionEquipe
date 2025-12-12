@@ -36,7 +36,7 @@ $matches = $daoMatch->findAll();
                             <td><?= htmlspecialchars($match->getAdversaire()) ?></td>
                             <td><?= htmlspecialchars($match->getDate()) ?></td>
                             <td>
-                                <a class="action-btn edit-btn" href="/GestionEquipe/vue/saisie.php?id=<?= $match->getIdMatch() ?>">Préparer</a>
+<a class="action-btn edit-btn" href="/GestionEquipe/controleur/GestionSaisieMatch.php?id=<?= $match->getIdMatch() ?>">Préparer</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
