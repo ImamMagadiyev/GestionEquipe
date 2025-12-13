@@ -8,4 +8,5 @@ require_once __DIR__ . '/../../connexion/verificationConnexion.php';
 
 $dao = new DaoJoueur($linkpdo);
 $joueurs = $dao->findAll(); 
+
 ?>

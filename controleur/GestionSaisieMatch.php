@@ -2,15 +2,14 @@
 require_once __DIR__ . '/../modele/dao/DaoParticiper.php';
 require_once __DIR__ . '/../modele/dao/DaoJoueur.php';
 require_once __DIR__ . '/../modele/dao/DaoMatch.php';
+require_once __DIR__ . '/../bd/pdo.php';
 require_once __DIR__ . '/../connexion/verificationConnexion.php';
-require_once __DIR__ . '/../bd/pdo.php'; 
 
-
-// Récupérer l'ID du match depuis GET
+// Récupérer l'ID du match
 $id_match = $_GET['id'] ?? null;
 if (!$id_match) die("ID de match manquant !");
 
-// Création des DAO
+// Instanciation des DAO
 $daoJoueur = new DaoJoueur($linkpdo);
 $daoMatch = new DaoMatch($linkpdo);
 $daoParticiper = new DaoParticiper($linkpdo);
@@ -22,6 +21,7 @@ if (!$match) die("Match introuvable !");
 // Joueurs actifs
 $joueursActifs = $daoJoueur->findActifs();
 
+// Gestion du formulaire
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $joueursValides = 0;
@@ -31,13 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $joueursValides++;
         }
 
-        // Normaliser l'évaluation : vide => null, sinon convertir en int
         $evaluation = $data['evaluation'] ?? null;
-        if ($evaluation === '' || $evaluation === null) {
-            $evaluation = null;
-        } else {
-            $evaluation = (int)$evaluation;
-        }
+        if ($evaluation === '' || $evaluation === null) $evaluation = null;
+        else $evaluation = (int)$evaluation;
 
         $existing = $daoParticiper->findByJoueurEtMatch($id_joueur, $id_match);
         $p = new Participer(
@@ -56,11 +52,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    if($joueursValides < 3){ 
+    if($joueursValides < 7){ 
         $error = "Vous devez sélectionner au moins 7 joueurs.";
     } else {
-        header("Location: Match/choisir_match.php");
+        header("Location: /GestionEquipe/vue/Joueur/liste.php");
         exit;
     }
 }
-?>
+
+// Appel de la vue après avoir tout préparé
+include __DIR__ . '/../vue/Joueur/saisie.php';

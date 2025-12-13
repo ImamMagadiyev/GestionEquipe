@@ -40,6 +40,14 @@ class DaoJoueur implements Dao {
         return $result;
     }
 
+    public function peutSupprimer(Joueur $joueur): bool {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM Participer WHERE id_joueur = :id");
+        $stmt->bindValue(':id', $joueur->getIdJoueur());
+        $stmt->execute();
+        return $stmt->fetchColumn() == 0;
+    }
+
+
     public function create(object $obj): bool {
         $req = new RequetesJoueur('insert');
         $stmt = $this->pdo->prepare($req->requete());
