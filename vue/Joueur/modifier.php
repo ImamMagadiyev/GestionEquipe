@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../../controleur/Joueur/GestionModifierJoueur.php';
+include '../../menu.php';
 
 ?>
 
@@ -9,10 +10,12 @@ require_once __DIR__ . '/../../controleur/Joueur/GestionModifierJoueur.php';
 <head>
     <meta charset="UTF-8">
     <title>Modifier un joueur</title>
+            <link rel="stylesheet" href="../../style.css">
+
 </head>
 <body>
     <h1>Modifier un joueur</h1>
-    <form method="post">
+    <form method="post" class="formulaire">
         Nom : <input type="text" name="nom" value="<?= htmlspecialchars($joueur->getNom()) ?>"><br>
         Prénom : <input type="text" name="prenom" value="<?= htmlspecialchars($joueur->getPrenom()) ?>"><br>
         Numéro de license : <input type="text" name="num_license" value="<?= htmlspecialchars($joueur->getNumLicense()) ?>"><br>

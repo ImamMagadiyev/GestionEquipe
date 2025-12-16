@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../modele/dao/DaoMatch.php';
 require_once __DIR__ . '/../../modele/dao/requetes/RequeteMatch.php';
 require_once __DIR__ . '/../../bd/pdo.php'; 
 
-$dao = new DaoMatch($linkpdo);
+$dao = new DaoMatch($pdo);
 
 $id = $_GET['id'] ?? '';
 

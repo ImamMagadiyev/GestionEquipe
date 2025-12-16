@@ -8,14 +8,15 @@ class RequeteMatch implements Requetes {
     public function __construct(string $type){
         switch($type){
             case 'selectAll':
-                $this->sql = "SELECT * FROM Match_ ORDER BY date_ DESC, heure";
+                // Modifier la requête pour récupérer les matchs programmés après la date actuelle
+                $this->sql = "SELECT * FROM Match_ WHERE date_ > NOW() ORDER BY date_ ASC, heure";
                 break;
             case 'selectById':
                 $this->sql = "SELECT * FROM Match_ WHERE id_match=:id";
                 break;
             case 'insert':
-                $this->sql = "INSERT INTO Match_ (id_match, date_, heure, adversaire, lieu, resultat)
-                              VALUES (:id, :date_, :heure, :adversaire, :lieu, :resultat)";
+                $this->sql = "INSERT INTO Match_ (id_match, date_, heure, adversaire, logo_adversaire, lieu, resultat)
+                              VALUES (:id, :date_, :heure, :adversaire, :logo_adversaire, :lieu, :resultat)";
                 break;
             case 'update':
                 $this->sql = "UPDATE Match_ SET date_=:date_, heure=:heure, adversaire=:adversaire, lieu=:lieu, resultat=:resultat
@@ -40,11 +41,17 @@ class RequeteMatch implements Requetes {
     }
 
     public function parametresObjet(PDOStatement $stmt, object $data): void {
-        if(!$data instanceof Match_) throw new Exception("Objet attendu : Match_");
+
+        if(!($data instanceof Match_)) {
+            throw new Exception("Objet attendu : Match_");
+        }
+        $match = $data;
+
         $stmt->bindValue(':id', $data->getIdMatch());
         $stmt->bindValue(':date_', $data->getDate());
         $stmt->bindValue(':heure', $data->getHeure());
         $stmt->bindValue(':adversaire', $data->getAdversaire());
+        $stmt->bindValue(':logo_adversaire', $data->getLogoAdversaire()); 
         $stmt->bindValue(':lieu', $data->getLieu());
         $stmt->bindValue(':resultat', $data->getResultat());
     }

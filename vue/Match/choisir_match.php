@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../bd/pdo.php';
 require_once __DIR__ . '/../../modele/dao/DaoMatch.php';
 require_once __DIR__ . '/../../connexion/verificationConnexion.php';
 
-$daoMatch = new DaoMatch($linkpdo);
+$daoMatch = new DaoMatch($pdo);  // Passer la connexion PDO correctement
 $matches = $daoMatch->findAll();
 ?>
 <!DOCTYPE html>

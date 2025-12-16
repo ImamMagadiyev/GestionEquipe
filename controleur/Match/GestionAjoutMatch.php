@@ -10,11 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_POST['date'] ?? null,
         $_POST['heure'] ?? null,
         $_POST['adversaire'] ?? null,
+        $_POST['logo_adversaire'] ?? null,
         $_POST['lieu'] ?? null,
         $_POST['resultat'] ?? null
     );
 
-    $dao = new DaoMatch($linkpdo);
+    $dao = new DaoMatch($pdo);
     $dao->create($match);
 
     header("Location: liste.php");

@@ -12,7 +12,7 @@ include '../../menu.php';
 </head>
 <body>
     <h1>Modifier un match</h1>
-    <form method="post">
+    <form method="post" class="formulaire">
         Date : <input type="date" name="date" value="<?= htmlspecialchars($match->getDate()) ?>"><br>
         Heure : <input type="time" name="heure" value="<?= htmlspecialchars($match->getHeure()) ?>"><br>
         Adversaire : <input type="text" name="adversaire" value="<?= htmlspecialchars($match->getAdversaire()) ?>"><br>

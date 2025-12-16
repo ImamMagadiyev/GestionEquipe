@@ -12,7 +12,7 @@ include '../../menu.php';
 </head>
 <body>
     <h1>Ajouter un joueur</h1>
-    <form method="post">
+    <form method="post" class="formulaire">
         Nom : <input type="text" name="nom" required><br>
         Prénom : <input type="text" name="prenom" required><br>
         Numéro de license : <input type="text" name="num_license" required><br>

@@ -10,9 +10,9 @@ $id_match = $_GET['id'] ?? null;
 if (!$id_match) die("ID de match manquant !");
 
 // Instanciation des DAO
-$daoJoueur = new DaoJoueur($linkpdo);
-$daoMatch = new DaoMatch($linkpdo);
-$daoParticiper = new DaoParticiper($linkpdo);
+$daoJoueur = new DaoJoueur($pdo);
+$daoMatch = new DaoMatch($pdo);
+$daoParticiper = new DaoParticiper($pdo);
 
 // Récupérer le match
 $match = $daoMatch->findById($id_match);
@@ -61,4 +61,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Appel de la vue après avoir tout préparé
-include __DIR__ . '/../vue/Joueur/saisie.php';
+include __DIR__ . '/../vue//saisie.php';

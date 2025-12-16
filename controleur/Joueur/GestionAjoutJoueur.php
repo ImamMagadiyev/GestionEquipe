@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_POST['poste_prefere'] ?? null
     );
 
-    $dao = new DaoJoueur($linkpdo);
+    $dao = new DaoJoueur($pdo);
     $dao->create($joueur);
 
     header("Location: liste.php");

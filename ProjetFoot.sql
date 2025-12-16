@@ -41,3 +41,4 @@ CREATE TABLE Participer (
     FOREIGN KEY (id_joueur) REFERENCES Joueur(id_joueur),
     FOREIGN KEY (id_match) REFERENCES Match_(id_match)
 );
+

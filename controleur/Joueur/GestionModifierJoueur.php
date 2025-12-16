@@ -6,7 +6,7 @@ require_once __DIR__ . '/../../modele/dao/requetes/RequetesJoueur.php';
 require_once __DIR__ . '/../../bd/pdo.php';
 require_once __DIR__ . '/../../connexion/verificationConnexion.php';
 
-$dao = new DaoJoueur($linkpdo);
+$dao = new DaoJoueur($pdo);
 
 // Récupération de l'id
 $id = $_GET['id'] ?? '';

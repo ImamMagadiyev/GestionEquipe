@@ -31,6 +31,11 @@ class DaoMatch implements Dao {
     }
 
     public function create(object $obj): bool {
+
+        if (!($obj instanceof Match_)) {
+            return false;
+        }
+
         $req = new RequeteMatch('insert');
         $stmt = $this->pdo->prepare($req->requete());
         $req->parametresObjet($stmt, $obj);
@@ -38,21 +43,31 @@ class DaoMatch implements Dao {
     }
 
     public function update(object $obj): bool {
+
+        if (!($obj instanceof Match_)) {
+            return false;
+        }
+
         $req = new RequeteMatch('update');
         $stmt = $this->pdo->prepare($req->requete());
         $req->parametresObjet($stmt, $obj);
         return $stmt->execute();
     }
 
+    // ... (Avant la méthode delete) ...
     public function delete(object $obj): bool {
+        $stmt_participer = $this->pdo->prepare(
+            "DELETE FROM Participer WHERE id_match = :id_match"
+        );
+        $stmt_participer->bindValue(':id_match', $obj->getIdMatch());
+        $stmt_participer->execute(); 
+
+        // 2. Suppression du Match (Parent)
         $req = new RequeteMatch('delete');
         $stmt = $this->pdo->prepare($req->requete());
         $req->parametresId($stmt, $obj->getIdMatch()); 
         return $stmt->execute();
     }
-
-
- 
 
     private function creerInstance(array $row): Match_ {
         return new Match_(
@@ -60,6 +75,7 @@ class DaoMatch implements Dao {
             $row['date_'],
             $row['heure'] ?? null,
             $row['adversaire'] ?? null,
+            $row['logo_adversaire'] ?? null,
             $row['lieu'] ?? null,
             $row['resultat'] ?? null
         );

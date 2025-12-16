@@ -1,17 +1,28 @@
-<?php include __DIR__ . '/../../menu.php'; ?>
- 
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/GestionEquipe/menu.php'; ?>
+
+<?php
+// Definit les chemins pour afficher le logo
+$repertoireLogos = '../Assets/clubs';
+$logoAdversaire = $match->getLogoAdversaire() ?? '';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Feuille de match</title>
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="/GestionEquipe/style.css">
 </head>
 <body>
 
 <main>
     <h1>Préparer le match contre <?= htmlspecialchars($match->getAdversaire()) ?></h1>
 
+    <?php
+    $error = $error ?? '';
+    $success = $success ?? '';
+    ?>
+    
     <?php if($error): ?>
         <p class="error"><?= htmlspecialchars($error) ?></p>
     <?php elseif($success): ?>
