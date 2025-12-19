@@ -15,17 +15,20 @@ $repertoireAbsolu = __DIR__ . '/../../Assets/clubs/';
 <body>
     <h1>Ajouter un match</h1>
     <form method="post" class="formulaire">
-        Date : <input type="date" name="date" required>
-        Heure : <input type="time" name="heure"><br><br>
-        Adversaire : <input type="text" name="adversaire">
+        <label>Date :</label> 
+        <input type="date" name="date" required>
+        <label>Heure :</label> 
+        <input type="time" name="heure"><br><br>
+        <label>Adversaire :</label> 
+        <input type="text" name="adversaire">
         
-        Logo : 
+        <label>Logo :</label> 
         <select name="logo_adversaire">
             <option value="">-- Choisir un logo --</option>
             
             <?php
 
-            $cheminRelatifAffichage = 'Assets/clubs';
+            $cheminRelatifAffichage = 'Assets/clubs/';
             // Utilisation du chemin absolu qui a donné SUCCÈS
             $fichiersLogos = glob($repertoireAbsolu . '*.png');
 
@@ -43,10 +46,13 @@ $repertoireAbsolu = __DIR__ . '/../../Assets/clubs/';
             ?>
         </select>
         <br>
-        Lieu : <input type="text" name="lieu"><br>
-        Résultat : <input type="text" name="resultat"><br>
+        <label>Lieu :</label> 
+        <input type="text" name="lieu"><br>
+        <label>Résultat :</label> 
+        <input type="text" name="resultat"><br>
+
         <input type="submit" value="Ajouter" class="btn-ajouter">
     </form>
-    <a href="liste.php">Retour à la liste</a>
+    <input  onclick="window.location.href='liste.php'" type="submit" value="Retour" class="btn-ajouter">
 </body>
 </html>

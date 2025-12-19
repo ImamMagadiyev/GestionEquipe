@@ -291,9 +291,6 @@ body h1, body h2 {
 /* =======================================
    SECTION DES PROCHAINS MATCHS
    ======================================= */
-/* =======================================
-   SECTION DES PROCHAINS MATCHS (Style moderne "Carte")
-   ======================================= */
 .prochains-matchs {
     margin: 20px auto;
     padding: 20px;
@@ -407,6 +404,15 @@ body h1, body h2 {
     max-width: 600px;
     box-shadow: 0 0 10px rgba(0,0,0,0.05);
     border-radius: 8px;
+}
+
+.formulaire label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--couleur-texte-sombre);
+    font-weight: bold;
+    font-size: 0.9em;
+    text-transform: uppercase;
 }
 
 .formulaire input[type="text"],
@@ -524,7 +530,7 @@ body h1, body h2 {
 }
 
 .flash-message.success { 
-    background-color: #e6ffec; 
+    background-color: var(--couleur-texte-sombre); 
     border: 1px solid var(--couleur-succes);
     color: var(--couleur-texte); 
 }

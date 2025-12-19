@@ -56,7 +56,9 @@ $matchs = $daoMatch->findAll();  // Cette méthode retourne les matchs dont la d
                     <p class="match-details">Lieu: <?= htmlspecialchars($match->getLieu()); ?></p>
                     
                     <div class="match-actions">
-                        <a href="controleur/Match/saisie.php?id=<?= $match->getIdMatch() ?>" class="btn-prepare">Préparer le match</a>
+                        <a href="controleur/GestionSaisieMatch.php?id=<?= $match->getIdMatch() ?>" class="btn-prepare">
+                            Préparer le match
+                        </a>
                     </div>
                 </div>
             <?php endforeach; ?>

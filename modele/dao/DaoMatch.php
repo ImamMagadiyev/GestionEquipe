@@ -69,6 +69,18 @@ class DaoMatch implements Dao {
         return $stmt->execute();
     }
 
+    public function getGlobalStats(): array {
+        $sql = "SELECT
+                    COUNT(*) AS TOTAL
+                    SUM(CASE WHEN resultat = 'V' THEN 1 ELSE 0 END) as victoires,
+                    SUM(CASE WHEN resultat = 'N' THEN 1 ELSE 0 END) as nuls,
+                    SUM(CASE WHEN resultat = 'D' THEN 1 ELSE 0 END) as defaites
+                FROM Match_
+                WHERE resultat IS NOT NULL AND resultat !=''";
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     private function creerInstance(array $row): Match_ {
         return new Match_(
             $row['id_match'],

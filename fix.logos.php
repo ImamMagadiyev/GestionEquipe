@@ -15,7 +15,7 @@ try {
 
     $stmt->bindValue(':prefixe', $prefixe_correct);
     $stmt->bindValue(':extension', $extension);
-    $stmt->bindValue(':prefixe_like', $prefixe_correct . '%'); // Exclut les lignes déjà correctes
+    $stmt->bindValue(':prefixe_like', $prefixe_correct . '%'); 
     
     $stmt->execute();
     

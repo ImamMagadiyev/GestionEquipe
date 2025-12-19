@@ -1,9 +1,10 @@
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/GestionEquipe/menu.php'; ?>
+<?php 
+// 1. On inclut le menu
+include $_SERVER['DOCUMENT_ROOT'] . '/GestionEquipe/menu.php'; 
 
-<?php
-// Definit les chemins pour afficher le logo
-$repertoireLogos = '../Assets/clubs';
-$logoAdversaire = $match->getLogoAdversaire() ?? '';
+// 2. On récupère les données transmises par le contrôleur
+// On ne touche à rien, $match est déjà créé par le contrôleur
+$logoAdversaire = $match->getLogoAdversaire(); 
 ?>
 
 <!DOCTYPE html>
