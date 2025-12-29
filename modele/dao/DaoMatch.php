@@ -70,15 +70,19 @@ class DaoMatch implements Dao {
     }
 
     public function getGlobalStats(): array {
-        $sql = "SELECT
-                    COUNT(*) AS TOTAL
-                    SUM(CASE WHEN resultat = 'V' THEN 1 ELSE 0 END) as victoires,
-                    SUM(CASE WHEN resultat = 'N' THEN 1 ELSE 0 END) as nuls,
-                    SUM(CASE WHEN resultat = 'D' THEN 1 ELSE 0 END) as defaites
-                FROM Match_
-                WHERE resultat IS NOT NULL AND resultat !=''";
-        $stmt = $this->pdo->query($sql);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT 
+            COUNT(*) as total,
+            SUM(CASE WHEN resultat = 'V' THEN 1 ELSE 0 END) as victoires,
+            SUM(CASE WHEN resultat = 'N' THEN 1 ELSE 0 END) as nuls,
+            SUM(CASE WHEN resultat = 'D' THEN 1 ELSE 0 END) as defaites
+        FROM Match_ 
+        WHERE resultat IS NOT NULL AND resultat != ''";
+            
+    $stmt = $this->pdo->query($sql);
+    $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Sécurité : si la requête ne renvoie rien, on évite le "null"
+    return $res ? $res : ['total' => 0, 'victoires' => 0, 'nuls' => 0, 'defaites' => 0];
     }
 
     private function creerInstance(array $row): Match_ {
