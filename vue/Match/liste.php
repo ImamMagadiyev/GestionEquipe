@@ -55,8 +55,8 @@ require_once __DIR__ . '/../../controleur/Match/GestionListeMatch.php';
                     </td>
                     <td>
                         <div class="adversaire-info">
-                            <?php if($m->getLogoAdversaire()): ?>
-                            <img src="../../<?= htmlspecialchars($m->getLogoAdversaire()) ?>" alt="" class="mini-logo">
+                            <?php if($m->getLogoAdversaire() && !empty($m->getLogoAdversaire())): ?>
+                            <img src="../../<?= htmlspecialchars($m->getLogoAdversaire()) ?>" alt="Logo" class="mini-logo" style="max-width: 30px; height: auto;">
                             <?php endif; ?>
                             <strong><?= htmlspecialchars($m->getAdversaire()) ?: 'Non défini' ?></strong>
                         </div>
@@ -80,12 +80,17 @@ require_once __DIR__ . '/../../controleur/Match/GestionListeMatch.php';
                         $statut = $m->getStatut();
                         $statusClass = $statut === 'à venir' ? 'status-info' : 'status-success';
                         ?>
-                        <span class="status-badge <?= $statusClass ?>"><?= htmlspecialchars($statut) ?></span>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="status-badge <?= $statusClass ?>"><?= htmlspecialchars($statut) ?></span>
+                            <?php if($matchsPrepa[$m->getIdMatch()]): ?>
+                            <span style="background: #22c55e; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold;">✅ Préparé</span>
+                            <?php endif; ?>
+                        </div>
                     </td>
                     <td>
                         <div class="action-buttons">
                             <a href="modifier.php?id=<?= $m->getIdMatch() ?>" class="action-btn edit-btn">Modifier</a>
-                            <a href="supprimer.php?id=<?= $m->getIdMatch() ?>" class="action-btn delete-btn" onclick="return confirm('Supprimer ce match ?')">Supprimer</a>
+                            <a href="supprimer.php?id=<?= $m->getIdMatch() ?>" class="action-btn delete-btn">Supprimer</a>
                         </div>
                     </td>
                 </tr>

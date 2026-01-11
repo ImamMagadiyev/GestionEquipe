@@ -96,7 +96,7 @@ if (isset($_GET['msg'])) {
                     <td>
                         <div class="action-buttons">
                             <a href="modifier.php?id=<?= $j->getIdJoueur() ?>" class="action-btn edit-btn">Modifier</a>
-                            <a href="supprimer.php?id=<?= $j->getIdJoueur() ?>" class="action-btn delete-btn" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce joueur ?')">Supprimer</a>
+                            <a href="supprimer.php?id=<?= $j->getIdJoueur() ?>" class="action-btn delete-btn">Supprimer</a>
                         </div>
                     </td>
                 </tr>

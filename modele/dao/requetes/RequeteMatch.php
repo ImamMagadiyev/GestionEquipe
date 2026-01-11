@@ -8,7 +8,11 @@ class RequeteMatch implements Requetes {
     public function __construct(string $type){
         switch($type){
             case 'selectAll':
-                // Modifier la requête pour récupérer les matchs programmés après la date actuelle
+                // Récupérer TOUS les matchs (passés et futurs)
+                $this->sql = "SELECT * FROM Match_ ORDER BY date_ DESC, heure DESC";
+                break;
+            case 'selectFuturs':
+                // Récupérer uniquement les matchs futurs pour la page d'accueil
                 $this->sql = "SELECT * FROM Match_ WHERE date_ > NOW() ORDER BY date_ ASC, heure";
                 break;
             case 'selectById':
@@ -19,7 +23,7 @@ class RequeteMatch implements Requetes {
                               VALUES (:id, :date_, :heure, :adversaire, :logo_adversaire, :lieu, :resultat)";
                 break;
             case 'update':
-                $this->sql = "UPDATE Match_ SET date_=:date_, heure=:heure, adversaire=:adversaire, lieu=:lieu, resultat=:resultat
+                $this->sql = "UPDATE Match_ SET date_=:date_, heure=:heure, adversaire=:adversaire, logo_adversaire=:logo_adversaire, lieu=:lieu, resultat=:resultat
                               WHERE id_match=:id";
                 break;
             case 'delete':

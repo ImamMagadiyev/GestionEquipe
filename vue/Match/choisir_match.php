@@ -1,10 +1,19 @@
 <?php
 require_once __DIR__ . '/../../bd/pdo.php';
 require_once __DIR__ . '/../../modele/dao/DaoMatch.php';
+require_once __DIR__ . '/../../modele/dao/DaoParticiper.php';
 require_once __DIR__ . '/../../connexion/verificationConnexion.php';
 
 $daoMatch = new DaoMatch($pdo);
-$matches = $daoMatch->findAll();
+$daoParticiper = new DaoParticiper($pdo);
+$matches = $daoMatch->findFuturs();  // Affiche uniquement les matchs à venir
+
+// Vérifier quels matchs sont préparés
+$matchsPrepa = [];
+foreach($matches as $m) {
+    $participations = $daoParticiper->findAllByMatch($m->getIdMatch());
+    $matchsPrepa[$m->getIdMatch()] = count($participations) >= 11;
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -40,9 +49,14 @@ $matches = $daoMatch->findAll();
                             <span class="match-card-date">
                                 <?= date('d/m/Y', strtotime($match->getDate())) ?>
                             </span>
-                            <span class="status-badge <?= $match->getStatut() === 'à venir' ? 'status-info' : 'status-success' ?>">
-                                <?= htmlspecialchars($match->getStatut()) ?>
-                            </span>
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                <span class="status-badge <?= $match->getStatut() === 'à venir' ? 'status-info' : 'status-success' ?>">
+                                    <?= htmlspecialchars($match->getStatut()) ?>
+                                </span>
+                                <?php if($matchsPrepa[$match->getIdMatch()]): ?>
+                                <span style="background: #22c55e; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">✅ Préparé</span>
+                                <?php endif; ?>
+                            </div>
                         </div>
                         
                         <div class="match-card-body">

@@ -5,7 +5,7 @@ include 'modele/Dao/DaoMatch.php';
 require_once 'bd/pdo.php';
 
 $daoMatch = new DaoMatch($pdo);
-$matchs = $daoMatch->findAll();  
+$matchs = $daoMatch->findFuturs();  // Affiche les prochains matchs à venir  
 ?>
 <!DOCTYPE html>
 <html lang="fr">

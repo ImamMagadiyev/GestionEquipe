@@ -56,14 +56,28 @@ $logoAdversaire = $match->getLogoAdversaire();
         </div>
     <?php elseif($success): ?>
         <div class="flash-message success">
-            <span>✓ <?= htmlspecialchars($success) ?></span>
+            <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                <span style="font-size: 24px;">✅ <?= htmlspecialchars($success) ?></span>
+                <span style="font-size: 14px; opacity: 0.9;">Redirection en cours...</span>
+                <div style="width: 100%; height: 4px; background: rgba(255, 255, 255, 0.2); border-radius: 2px; overflow: hidden;">
+                    <div style="height: 100%; background: #22c55e; width: 100%; animation: reduceWidth 3s linear forwards;"></div>
+                </div>
+                <a href="/GestionEquipe/vue/Joueur/liste.php" style="margin-top: 10px; color: white; text-decoration: underline; font-size: 13px;">Cliquez ici si vous n'êtes pas redirigé</a>
+            </div>
         </div>
+        <meta http-equiv="refresh" content="3;url=/GestionEquipe/vue/Joueur/liste.php">
+        <style>
+            @keyframes reduceWidth {
+                from { width: 100%; }
+                to { width: 0%; }
+            }
+        </style>
     <?php endif; ?>
 
     <div class="saisie-info">
         <div class="info-card">
             <span class="info-icon">ℹ️</span>
-            <span>Vous devez sélectionner <strong>au moins 7 joueurs</strong> (titulaires ou remplaçants)</span>
+            <span>Vous devez sélectionner <strong>exactement 11 joueurs</strong> avec <strong>1 gardien obligatoire</strong></span>
         </div>
     </div>
 

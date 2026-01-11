@@ -21,6 +21,17 @@ class DaoMatch implements Dao {
         return $result;
     }
 
+    public function findFuturs(): array {
+        $req = new RequeteMatch('selectFuturs');
+        $stmt = $this->pdo->prepare($req->requete());
+        $stmt->execute();
+        $result = [];
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $result[] = $this->creerInstance($row);
+        }
+        return $result;
+    }
+
     public function findById(string $id): ?Match_ {
         $req = new RequeteMatch('selectById');
         $stmt = $this->pdo->prepare($req->requete());
@@ -70,19 +81,42 @@ class DaoMatch implements Dao {
     }
 
     public function getGlobalStats(): array {
+        // Requête qui calcule la victoire/défaite/nul en parsant le résultat
+        // Format résultat : "X-Y"
+        // Domicile : X (mon équipe) - Y (adversaire)
+        // Extérieur : X (adversaire) - Y (mon équipe)
         $sql = "SELECT 
             COUNT(*) as total,
-            SUM(CASE WHEN resultat = 'V' THEN 1 ELSE 0 END) as victoires,
-            SUM(CASE WHEN resultat = 'N' THEN 1 ELSE 0 END) as nuls,
-            SUM(CASE WHEN resultat = 'D' THEN 1 ELSE 0 END) as defaites
+            SUM(CASE 
+                WHEN resultat IS NOT NULL AND resultat != '' THEN
+                    CASE 
+                        WHEN (lieu = 'Domicile' AND CAST(SUBSTRING_INDEX(resultat, '-', 1) AS UNSIGNED) > CAST(SUBSTRING_INDEX(resultat, '-', -1) AS UNSIGNED)) THEN 1
+                        WHEN (lieu = 'Extérieur' AND CAST(SUBSTRING_INDEX(resultat, '-', -1) AS UNSIGNED) > CAST(SUBSTRING_INDEX(resultat, '-', 1) AS UNSIGNED)) THEN 1
+                        ELSE 0
+                    END
+                ELSE 0
+            END) as victoires,
+            SUM(CASE 
+                WHEN resultat IS NOT NULL AND resultat != '' AND CAST(SUBSTRING_INDEX(resultat, '-', 1) AS UNSIGNED) = CAST(SUBSTRING_INDEX(resultat, '-', -1) AS UNSIGNED) THEN 1
+                ELSE 0
+            END) as nuls,
+            SUM(CASE 
+                WHEN resultat IS NOT NULL AND resultat != '' THEN
+                    CASE 
+                        WHEN (lieu = 'Domicile' AND CAST(SUBSTRING_INDEX(resultat, '-', 1) AS UNSIGNED) < CAST(SUBSTRING_INDEX(resultat, '-', -1) AS UNSIGNED)) THEN 1
+                        WHEN (lieu = 'Extérieur' AND CAST(SUBSTRING_INDEX(resultat, '-', -1) AS UNSIGNED) < CAST(SUBSTRING_INDEX(resultat, '-', 1) AS UNSIGNED)) THEN 1
+                        ELSE 0
+                    END
+                ELSE 0
+            END) as defaites
         FROM Match_ 
         WHERE resultat IS NOT NULL AND resultat != ''";
             
-    $stmt = $this->pdo->query($sql);
-    $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $this->pdo->query($sql);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Sécurité : si la requête ne renvoie rien, on évite le "null"
-    return $res ? $res : ['total' => 0, 'victoires' => 0, 'nuls' => 0, 'defaites' => 0];
+        // Sécurité : si la requête ne renvoie rien, on évite le "null"
+        return $res ? $res : ['total' => 0, 'victoires' => 0, 'nuls' => 0, 'defaites' => 0];
     }
 
     private function creerInstance(array $row): Match_ {

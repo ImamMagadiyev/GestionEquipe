@@ -23,6 +23,18 @@ $repertoireAbsolu = __DIR__ . '/../../Assets/clubs/';
         <a href="liste.php" class="btn-retour">← Retour à la liste</a>
     </div>
 
+    <?php if (!empty($erreur)): ?>
+        <div style="background-color: #ef4444; color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            ❌ <?= htmlspecialchars($erreur) ?>
+        </div>
+    <?php elseif (!empty($success)): ?>
+        <div style="background-color: #22c55e; color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+            <div>✅ <?= htmlspecialchars($success) ?></div>
+            <div style="font-size: 13px; margin-top: 10px; opacity: 0.9;">Redirection en cours...</div>
+        </div>
+        <meta http-equiv="refresh" content="2;url=liste.php">
+    <?php endif; ?>
+
     <form method="post" class="formulaire">
         <div class="form-section">
             <h3 class="form-section-title">📆 Date et heure</h3>
@@ -80,8 +92,8 @@ $repertoireAbsolu = __DIR__ . '/../../Assets/clubs/';
                         <option value="Extérieur">✈️ Extérieur</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="resultat">Résultat (si connu)</label>
+                <div class="form-group" id="resultat-group">
+                    <label for="resultat">Résultat (si le match est terminé)</label>
                     <input type="text" name="resultat" id="resultat" placeholder="Ex: 2-1">
                 </div>
             </div>
