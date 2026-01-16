@@ -63,7 +63,7 @@ class DaoParticiper implements Dao {
     /** Historique d’un joueur → utile pour statistiques */
     public function findHistoriqueByJoueur(string $id_joueur): array {
     $stmt = $this->pdo->prepare(
-        "SELECT p.evaluation, m.adversaire, m.date_ AS date_match
+        "SELECT p.evaluation, p.poste, p.titulaire_remplacant, m.adversaire, m.date_ AS date_match, m.resultat, m.lieu
          FROM Participer p
          JOIN match_ m ON p.id_match = m.id_match
          WHERE p.id_joueur = :id_joueur
@@ -74,6 +74,97 @@ class DaoParticiper implements Dao {
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+    /** Statistiques détaillées pour un joueur */
+    public function getStatistiquesJoueur(string $id_joueur): array {
+        $historique = $this->findHistoriqueByJoueur($id_joueur);
+        
+        if (empty($historique)) {
+            return [
+                'nb_titularisations' => 0,
+                'nb_remplacements' => 0,
+                'evaluation_moyenne' => 0,
+                'matchs_consecutifs' => 0,
+                'pourcentage_victoires' => 0,
+                'poste_meilleur' => null
+            ];
+        }
+
+        $nb_titularisations = 0;
+        $nb_remplacements = 0;
+        $total_evaluations = 0;
+        $nb_evaluations = 0;
+        $victoires = 0;
+        $matchs_joues = 0;
+        $postes = [];
+        $matchs_consecutifs = 0;
+
+        foreach ($historique as $match) {
+            if ($match['titulaire_remplacant'] === 'titulaire') {
+                $nb_titularisations++;
+            } else {
+                $nb_remplacements++;
+            }
+
+            if ($match['evaluation'] !== null) {
+                $total_evaluations += intval($match['evaluation']);
+                $nb_evaluations++;
+            }
+
+            if ($match['poste']) {
+                if (!isset($postes[$match['poste']])) {
+                    $postes[$match['poste']] = ['count' => 0, 'total_eval' => 0];
+                }
+                $postes[$match['poste']]['count']++;
+                if ($match['evaluation']) {
+                    $postes[$match['poste']]['total_eval'] += intval($match['evaluation']);
+                }
+            }
+
+            if ($match['resultat'] && strpos($match['resultat'], '-') !== false) {
+                $matchs_joues++;
+                $parts = explode('-', $match['resultat']);
+                $score_equipe = intval($parts[0]);
+                $score_adversaire = intval($parts[1]);
+
+                if ($match['lieu'] === 'Extérieur') {
+                    $temp = $score_equipe;
+                    $score_equipe = $score_adversaire;
+                    $score_adversaire = $temp;
+                }
+
+                if ($score_equipe > $score_adversaire) {
+                    $victoires++;
+                }
+            }
+        }
+
+        // Matchs consécutifs (les plus récents jusqu'à une non-participation)
+        foreach ($historique as $match) {
+            $matchs_consecutifs++;
+        }
+
+        $poste_meilleur = null;
+        $meilleure_moyenne = 0;
+        foreach ($postes as $poste => $data) {
+            if ($data['total_eval'] > 0) {
+                $moyenne = $data['total_eval'] / $data['count'];
+                if ($moyenne > $meilleure_moyenne) {
+                    $meilleure_moyenne = $moyenne;
+                    $poste_meilleur = $poste;
+                }
+            }
+        }
+
+        return [
+            'nb_titularisations' => $nb_titularisations,
+            'nb_remplacements' => $nb_remplacements,
+            'evaluation_moyenne' => $nb_evaluations > 0 ? round($total_evaluations / $nb_evaluations, 2) : 0,
+            'matchs_consecutifs' => count($historique),
+            'pourcentage_victoires' => $matchs_joues > 0 ? round(($victoires / $matchs_joues) * 100, 1) : 0,
+            'poste_meilleur' => $poste_meilleur
+        ];
+    }
 
 
 

@@ -13,6 +13,7 @@ $repertoireAbsolu = __DIR__ . '/../../Assets/clubs/';
     <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
+    <?php require '../../menu.php'; ?>
 
 <div class="page-container">
     <div class="page-header">

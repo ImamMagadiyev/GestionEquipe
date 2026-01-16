@@ -1,7 +1,7 @@
 <?php
-require 'connexion/verificationConnexion.php';
-include 'menu.php';
-include 'modele/Dao/DaoMatch.php';  
+require_once 'connexion/verificationConnexion.php';
+require_once 'menu.php';
+require_once 'modele/Dao/DaoMatch.php';
 require_once 'bd/pdo.php';
 
 $daoMatch = new DaoMatch($pdo);

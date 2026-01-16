@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../controleur/Joueur/GestionAjoutJoueur.php';
-include '../../menu.php';
+require_once '../../menu.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -11,6 +11,7 @@ include '../../menu.php';
     <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
+    <?php require '../../menu.php'; ?>
 
 <div class="page-container">
     <div class="page-header">

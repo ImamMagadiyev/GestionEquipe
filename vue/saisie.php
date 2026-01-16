@@ -1,6 +1,5 @@
-<?php 
-include $_SERVER['DOCUMENT_ROOT'] . '/GestionEquipe/menu.php'; 
-$logoAdversaire = $match->getLogoAdversaire(); 
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . '/GestionEquipe/menu.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">

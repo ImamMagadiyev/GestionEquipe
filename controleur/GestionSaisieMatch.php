@@ -1,9 +1,9 @@
 <?php
-require_once __DIR__ . '/../modele/dao/DaoParticiper.php';
-require_once __DIR__ . '/../modele/dao/DaoJoueur.php';
-require_once __DIR__ . '/../modele/dao/DaoMatch.php';
-require_once __DIR__ . '/../bd/pdo.php';
 require_once __DIR__ . '/../connexion/verificationConnexion.php';
+require_once __DIR__ . '/../bd/pdo.php';
+require_once __DIR__ . '/../modele/dao/DaoMatch.php';
+require_once __DIR__ . '/../modele/dao/DaoJoueur.php';
+require_once __DIR__ . '/../modele/dao/DaoParticiper.php';
 
 $id_match = $_GET['id'] ?? null;
 if (!$id_match) die("ID de match manquant !");

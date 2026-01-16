@@ -1,5 +1,4 @@
 <?php
-include '../../menu.php';
 require_once __DIR__ . '/../../controleur/Match/GestionListeMatch.php';
 ?>
 <!DOCTYPE html>
@@ -11,6 +10,7 @@ require_once __DIR__ . '/../../controleur/Match/GestionListeMatch.php';
     <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
+    <?php require '../../menu.php'; ?>
 
 <div class="page-container">
     <div class="page-header">

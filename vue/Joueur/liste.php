@@ -1,5 +1,4 @@
 <?php
-include '../../menu.php';
 require_once __DIR__ . '/../../controleur/Joueur/GestionListeJoueur.php';
 ?>
 <!DOCTYPE html>
@@ -11,6 +10,7 @@ require_once __DIR__ . '/../../controleur/Joueur/GestionListeJoueur.php';
     <link rel="stylesheet" href="../../style.css"> 
 </head>
 <body>
+    <?php require '../../menu.php'; ?>
 
 <?php
 $msg = '';
