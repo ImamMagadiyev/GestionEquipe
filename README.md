@@ -8,8 +8,8 @@ L'application **GestionEquipe** est une solution complète développée en PHP p
 
 ## 👥 Équipe de Développement
 Ce projet a été conçu et réalisé par :
-* **[Ton Prénom/Nom]**
-* **[Prénom/Nom de ton binôme]**
+* **Imam Magadiyev**
+* **Adrien Basset**
 
 ---
 
